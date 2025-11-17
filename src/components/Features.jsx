@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function Features() {
   const featureGroups = [
     {
@@ -36,16 +38,29 @@ export default function Features() {
   ]
 
   return (
-    <section className="relative bg-white py-16 sm:py-24" id="features">
+    <section className="relative bg-white py-20 sm:py-28" id="features">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <div className="mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Key Features</h2>
           <p className="mt-3 text-gray-600 max-w-3xl">A snapshot of what you can do with TAFI. Built to scale from 10 to 10,000 vehicles.</p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {featureGroups.map((group) => (
-            <div key={group.title} className="rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition bg-white">
+          {featureGroups.map((group, i) => (
+            <motion.div
+              key={group.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition bg-white"
+            >
               <div className="text-2xl mb-3">{group.emoji}</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">{group.title}</h3>
               <ul className="space-y-2 text-gray-600 text-sm">
@@ -56,7 +71,7 @@ export default function Features() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

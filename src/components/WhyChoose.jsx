@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function WhyChoose() {
   const bullets = [
     {
@@ -27,15 +29,30 @@ export default function WhyChoose() {
   ]
 
   return (
-    <section className="bg-gray-50 py-16 sm:py-24" id="why">
+    <section className="bg-gray-50 py-20 sm:py-28" id="why">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Why Choose TAFI?</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl font-extrabold text-gray-900"
+        >
+          Why Choose TAFI?
+        </motion.h2>
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {bullets.map((b) => (
-            <div key={b.title} className="rounded-2xl border border-gray-200 p-6 bg-white">
+          {bullets.map((b, i) => (
+            <motion.div
+              key={b.title}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="rounded-2xl border border-gray-200 p-6 bg-white hover:shadow-lg hover:-translate-y-1 transition"
+            >
               <h3 className="text-lg font-semibold text-gray-900">{b.title}</h3>
               <p className="mt-2 text-gray-600 text-sm leading-relaxed">{b.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
